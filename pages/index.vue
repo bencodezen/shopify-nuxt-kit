@@ -1,33 +1,36 @@
+<script>
+export default {
+  data: () => ({
+    productList: [],
+  }),
+  async mounted() {
+    const response = await fetch('/.netlify/functions/get-items')
+    const data = await response.json()
+
+    this.productList = data
+  },
+}
+</script>
+
 <template>
   <div class="container">
     <div>
       <Logo />
       <h1 class="title">shopify-nuxt</h1>
-      <div class="links">
-        <a
-          href="https://nuxtjs.org/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--green"
-        >
-          Documentation
-        </a>
-        <a
-          href="https://github.com/nuxt/nuxt.js"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="button--grey"
-        >
-          GitHub
-        </a>
-      </div>
+      <ul>
+        <li v-for="product in productList" :key="product.node.id">
+          <img
+            :src="product.node.images.edges[0].node.src"
+            alt=""
+            style="max-width: 200px"
+          />
+          <h3>{{ product.node.title }}</h3>
+          <p>{{ product.node.description }}</p>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
-
-<script>
-export default {}
-</script>
 
 <style>
 .container {
