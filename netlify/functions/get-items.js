@@ -40,7 +40,7 @@ exports.handler = async () => {
   `
 
   try {
-    const response = await fetch(shopUrl + `/api/graphql`, {
+    const response = await fetch(shopUrl + `/api/unstable/graphql.json`, {
       method: 'post',
       headers: {
         'Content-Type': 'application/graphql',
@@ -48,8 +48,12 @@ exports.handler = async () => {
       },
       body: query,
     })
-      .then((res) => res.json())
+      .then((res) => {
+        console.log({ res })
+        return res.json()
+      })
       .then((response) => {
+        console.log({ response })
         return response.data.products.edges
       })
 
