@@ -4,7 +4,7 @@ export default {
     productList: [],
   }),
   async mounted() {
-    const response = await fetch('/.netlify/functions/get-items')
+    const response = await fetch('/api/get-items')
     const data = await response.json()
 
     this.productList = data
@@ -13,54 +13,236 @@ export default {
 </script>
 
 <template>
-  <div class="container">
-    <div>
-      <Logo />
-      <h1 class="title">shopify-nuxt</h1>
-      <ul>
-        <li v-for="product in productList" :key="product.node.id">
-          <img
-            :src="product.node.images.edges[0].node.src"
-            alt=""
-            style="max-width: 200px"
-          />
-          <h3>{{ product.node.title }}</h3>
-          <p>{{ product.node.description }}</p>
+  <div>
+    <HomeHero />
+    <main>
+      <ul class="products">
+        <li
+          v-for="product in productList"
+          class="product"
+          :key="product.node.id"
+        >
+          <a href="#">
+            <div class="frame">
+              <img
+                :src="product.node.images.edges[0].node.src"
+                alt=""
+                calss="prodimg"
+              />
+            </div>
+            <h2>{{ product.node.title }}</h2>
+            <p>{{ product.node.description.substring(0, 60) + '...' }}</p>
+          </a>
         </li>
       </ul>
-    </div>
+    </main>
   </div>
 </template>
 
 <style>
-.container {
-  margin: 0 auto;
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+:root {
+  --user-font-scale: calc(1rem - 16px);
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji;
+  font-size: 1rem;
+  font-size: clamp(
+    0.875rem,
+    calc(0.4626rem + 1.0309vw + var(--user-font-scale)),
+    1.125rem
+  );
+}
+
+body {
+  margin: 0;
+  width: 100%;
   min-height: 100vh;
-  display: flex;
+  display: grid;
   justify-content: center;
-  align-items: center;
+  background: #f9fafb;
+  color: #111827;
+}
+
+header {
+  margin: 50px 0;
+  padding-bottom: 50px;
+  border-bottom: 2px solid #e5eaef;
   text-align: center;
 }
 
-.title {
-  font-family: 'Quicksand', 'Source Sans Pro', -apple-system, BlinkMacSystemFont,
-    'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-  display: block;
-  font-weight: 300;
-  font-size: 100px;
-  color: #35495e;
-  letter-spacing: 1px;
+header h2 {
+  font-weight: 500;
+  margin-bottom: 30px;
 }
 
-.subtitle {
-  font-weight: 300;
-  font-size: 42px;
-  color: #526488;
-  word-spacing: 5px;
-  padding-bottom: 15px;
+main {
+  max-width: 1200px;
+  padding: 20px;
 }
 
-.links {
-  padding-top: 15px;
+a {
+  color: #e5eaef;
+}
+
+.cart {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+
+  border: 2px solid #5890f3;
+  color: #5890f3;
+}
+
+.home {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  padding: 10px;
+  border-radius: 10px;
+  text-decoration: none;
+
+  border: 2px solid #5890f3;
+  color: #5890f3;
+}
+
+.cart:hover,
+.home:hover {
+  background: #5890f3;
+  color: #e5eaef;
+}
+
+.products {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 0;
+}
+
+.product {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  margin: 10px;
+  width: 200px;
+  height: 250px;
+  list-style-type: none;
+  border: 2px solid #e5eaef;
+  border-radius: 10px;
+  box-shadow: 0 10px 15px -10px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.5s;
+}
+.product:hover {
+  box-shadow: 0 20px 15px -10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+}
+
+.product a {
+  text-decoration: none;
+}
+
+.product h2 {
+  padding: 5px;
+  color: #435a70;
+  font-size: 1.2em;
+  text-align: center;
+}
+
+.product p {
+  padding: 5px;
+  font-size: 0.8em;
+  opacity: 0.6;
+  text-overflow: ellipsis;
+}
+
+.product .frame {
+  width: 180px;
+  height: 100px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.product img {
+  max-width: 300px;
+  border-radius: 10px;
+}
+
+.product-page {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.product-img {
+  margin-bottom: 20px;
+  padding: 0 10px;
+}
+
+.product-img img {
+  max-width: min(100%, 500px);
+  border-radius: 10px;
+}
+
+.product-copy {
+  padding: 0 10px;
+  max-width: 500px;
+}
+
+.product-copy p {
+  margin: 20px 0;
+}
+
+.product-copy button {
+  padding: 10px;
+  background: transparent;
+  border-radius: 10px;
+  border: 2px solid #5890f3;
+  color: #5890f3;
+  font-size: 1em;
+}
+
+.product-copy button:hover,
+.product-copy button:focus {
+  background: #5890f3;
+  color: #e5eaef;
+  cursor: pointer;
+}
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #376fd6;
+    color: #fff;
+  }
+  .product {
+    background: #5890f3;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+  }
+  .product h2 {
+    color: #fff;
+  }
+  .home,
+  .cart {
+    border: 2px solid #e5eaef;
+    color: #e5eaef;
+  }
+  .product-copy button {
+    border: 2px solid #e5eaef;
+    color: #e5eaef;
+  }
+  .home:hover,
+  .cart:hover,
+  .product-copy button:hover,
+  .product-copy button:focus {
+    background: #e5eaef;
+    color: #5890f3;
+  }
 }
 </style>
