@@ -5,26 +5,39 @@ exports.handler = async () => {
   const storefrontAcessToken = 'b98313b8d60c1d61649070cc78cc41da' // Safe to share. This is read-only. Not secret.
 
   // Assemble the graphql query to fetch info all teh products
-  const query = `{
-    products(sortKey: TITLE, first: 100) {
-      edges {
-        node {
-          id
-          handle
-          description
-          title
-          images(first: 1) {
-            edges {
-              node {
-                src
-                altText
+  const query = `
+    {
+      products(sortKey: TITLE, first: 100) {
+        edges {
+          node {
+            id
+            handle
+            description
+            title
+            totalInventory
+            priceRange {
+              maxVariantPrice {
+                amount
+                currencyCode
+              }
+              minVariantPrice {
+                amount
+                currencyCode
+              }
+            }
+            images(first: 1) {
+              edges {
+                node {
+                  src
+                  altText
+                }
               }
             }
           }
         }
       }
     }
-  }`
+  `
 
   try {
     const response = await fetch(shopUrl + `/api/graphql`, {
