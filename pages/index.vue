@@ -7,7 +7,7 @@ export default {
     const response = await fetch('/api/get-items')
     const data = await response.json()
 
-    this.productList = data
+    this.productList = data.products.edges
   },
 }
 </script>
@@ -31,6 +31,7 @@ export default {
               />
             </div>
             <h2>{{ product.node.title }}</h2>
+            <p>Total: {{ product.node.totalInventory }}</p>
             <p>{{ product.node.description.substring(0, 60) + '...' }}</p>
           </a>
         </li>
