@@ -1,15 +1,33 @@
 export const state = () => ({
-  id: '',
+  base: {
+    id: '',
+    lines: {
+      edges: [],
+    },
+  },
 })
 
+export const getters = {
+  id: (state) => {
+    return state.base.id
+  },
+  items: (state) => {
+    if (state.base.lines) {
+      return state.base.lines.edges
+    } else {
+      return []
+    }
+  },
+}
+
 export const mutations = {
-  setCartId(state, id) {
-    state.id = id
+  setBase(state, response) {
+    state.base = response
   },
 }
 
 export const actions = {
-  updateCartId({ commit }, id) {
-    commit('setCartId', id)
+  updateBase({ commit }, response) {
+    commit('setBase', response)
   },
 }
