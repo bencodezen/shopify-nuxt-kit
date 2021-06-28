@@ -27,7 +27,7 @@ export default {
         quantity: 1,
       })
 
-      console.log({ cartResponse })
+      this.$store.dispatch('cart/updateBase', cartResponse)
     },
     currency(price) {
       const amount = Number(price.amount).toFixed(2)
