@@ -13,6 +13,19 @@ exports.handler = async () => {
                 description
                 title
                 totalInventory
+                variants(first: 5) {
+                  edges {
+                    node {
+                      id
+                      title
+                      quantityAvailable
+                      priceV2 {
+                        amount
+                        currencyCode
+                      }
+                    }
+                  }
+                }
                 priceRange {
                   maxVariantPrice {
                     amount
