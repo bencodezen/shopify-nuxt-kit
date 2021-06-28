@@ -1,7 +1,13 @@
 <script>
 export default {
+  async asyncData({ $http }) {
+    const productListResponse = await $http.$post('/api/get-product-list')
+
+    return {
+      productList: productListResponse.products.edges,
+    }
+  },
   data: () => ({
-    productList: [],
     shoppingCart: 0,
     cart: {},
   }),
@@ -20,12 +26,6 @@ export default {
 
       this.$store.dispatch('cart/updateCartId', cartData.id)
     },
-  },
-  async mounted() {
-    const response = await fetch('/api/get-items')
-    const data = await response.json()
-
-    this.productList = data.products.edges
   },
 }
 </script>
