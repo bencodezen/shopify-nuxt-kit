@@ -1,38 +1,46 @@
 <script>
 export default {
   data: () => ({
-    slug: '',
+    product: {},
   }),
-  // async mounted() {
-  //   console.log(this.$router)
-  //   const postToCart = await fetch('/api/create-cart')
-  //   const postToCartData = await postToCart.json()
-  //   console.log({ postToCartData })
-  // },
+  computed: {
+    featuredImage() {
+      if (this.product.images && this.product.images.edges) {
+        return this.product.images.edges[0].node
+      } else {
+        return 'No image found'
+      }
+    },
+  },
+  async created() {
+    const productData = await fetch('/api/get-product', {
+      method: 'POST',
+      body: JSON.stringify({
+        itemHandle: this.$route.params.slug,
+      }),
+    }).then((res) => res.json())
+
+    this.product = productData.productByHandle
+  },
 }
 </script>
 
 <template>
-  <div>
+  <main>
     <HomeHero />
-    <main class="product-page">
+    <div class="product-page">
       <div class="product-img">
-        <img
-          src="https://cdn.shopify.com/s/files/1/0578/9866/4142/products/brooke-lark-M4E7X3z80PQ-unsplash_1.jpg?v=1624502185"
-        />
+        <img :src="featuredImage.src" :alt="featuredImage.altText" />
       </div>
       <div class="product-copy">
-        <h1>Berry Good Charcuterie</h1>
+        <h1>{{ product.title }}</h1>
         <p>
-          Minim palo santo polaroid kinfolk farm-to-table brooklyn cornhole lyft
-          velit mollit neutra bicycle rights keffiyeh la croix. Af hexagon
-          occaecat, umami sustainable cliche chicharrones XOXO pinterest
-          succulents copper mug.
+          {{ product.description }}
         </p>
         <button>Add to Cart</button>
       </div>
-    </main>
-  </div>
+    </div>
+  </main>
 </template>
 
 <style></style>
