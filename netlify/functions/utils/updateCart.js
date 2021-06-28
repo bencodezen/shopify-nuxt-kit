@@ -2,8 +2,6 @@ const { postToShopify } = require('./postToShopify')
 
 // Takes a single item and creates a cart
 exports.updateCart = async ({ cartId, itemId, quantity }) => {
-  const { cartId, itemId, quantity } = JSON.parse(event.body)
-
   try {
     const response = await postToShopify({
       query: gql`
