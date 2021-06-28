@@ -1,3 +1,19 @@
+/**
+ * API endpoint to get items from an existing cart
+ *
+ * EXAMPLE:
+ *
+ * Get existing cart
+ *```
+ * fetch('/.netlify/functions/add-to-cart', {
+ *   method: 'POST',
+ *   body: JSON.stringify({
+ *     cartId: 123
+ *   })
+ * })
+ * ```
+ */
+
 const { postToShopify } = require('./utils/postToShopify')
 
 exports.handler = async (event) => {
