@@ -47,4 +47,4 @@ export default {
   </div>
 </template>
 
-<style src="@/assets/styles/global.css"></style>
+<style></style>
