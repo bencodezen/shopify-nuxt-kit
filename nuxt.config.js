@@ -32,8 +32,16 @@ export default {
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
-  modules: [],
+  modules: ['@nuxt/http'],
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {},
+
+  // $http Configuration: https://go.nuxtjs.dev/config-build
+  http: {
+    baseUrl:
+      process.env.NODE_ENV !== 'production'
+        ? 'http://localhost:8888'
+        : 'https://shopify-nuxt-demo.netlify.app',
+  },
 }
