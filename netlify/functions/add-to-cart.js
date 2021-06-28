@@ -1,19 +1,35 @@
-const { createCart } = require('./utils/createCart')
-const { updateCart } = require('./utils/updateCart')
-
 /**
- * Expects a POST method
- * with a body object that contains
- * the `cartId`
+ * API endpoint to manage add items to the cart
  *
- * Example:
+ * EXAMPLES:
+ *
+ * Add item to a new cart
  * ```
  * fetch('/.netlify/functions/add-to-cart', {
  *   method: 'POST',
- *   body: JSON.stringify({ cartId: 123 })
+ *   body: JSON.stringify({
+ *     itemId: 456,
+ *     quantity: 4
+ *   })
+ * })
+ * ```
+ *
+ * Add item to existing cart
+ * ```
+ * fetch('/.netlify/functions/add-to-cart', {
+ *   method: 'POST',
+ *   body: JSON.stringify({
+ *     cartId: 123,
+ *     itemId: 456,
+ *     quantity: 4
+ *   })
  * })
  * ```
  */
+
+const { createCart } = require('./utils/createCart')
+const { updateCart } = require('./utils/updateCart')
+
 exports.handler = async (event) => {
   const { cartId } = JSON.parse(event.body)
 
