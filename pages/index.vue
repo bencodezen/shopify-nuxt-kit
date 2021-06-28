@@ -22,7 +22,7 @@ export default {
           class="product"
           :key="product.node.id"
         >
-          <a href="#">
+          <NuxtLink :to="`/products/${product.node.handle}`">
             <div class="frame">
               <img
                 :src="product.node.images.edges[0].node.src"
@@ -33,7 +33,7 @@ export default {
             <h2>{{ product.node.title }}</h2>
             <p>Total: {{ product.node.totalInventory }}</p>
             <p>{{ product.node.description.substring(0, 60) + '...' }}</p>
-          </a>
+          </NuxtLink>
         </li>
       </ul>
     </main>
