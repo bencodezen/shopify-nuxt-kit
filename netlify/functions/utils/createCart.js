@@ -15,9 +15,15 @@ exports.createCart = async ({ itemId, quantity }) => {
                 edges {
                   node {
                     id
+                    quantity
                     merchandise {
                       ... on ProductVariant {
                         id
+                        title
+                        product {
+                          id
+                          title
+                        }
                       }
                     }
                   }
