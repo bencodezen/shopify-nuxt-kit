@@ -1,6 +1,8 @@
 const { postToShopify } = require('./utils/postToShopify')
 
-exports.handler = async () => {
+exports.handler = async (event) => {
+  const { itemHandle } = JSON.parse(event.body)
+
   const shopifyResponse = await postToShopify({
     query: `
       query getProduct($handle: String!) {
@@ -19,7 +21,7 @@ exports.handler = async () => {
       }
     `,
     variables: {
-      handle: 'aged-gruyere',
+      handle: itemHandle,
     },
   })
 
