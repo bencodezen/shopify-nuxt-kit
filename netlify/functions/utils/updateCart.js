@@ -4,7 +4,7 @@ const { postToShopify } = require('./postToShopify')
 exports.updateCart = async ({ cartId, itemId, quantity }) => {
   try {
     const response = await postToShopify({
-      query: gql`
+      query: `
         mutation updateCart($cartId: ID!, $lines: [CartLineUpdateInput!]!) {
           cartLinesUpdate(cartId: $cartId, lines: $lines) {
             cart {
