@@ -31,17 +31,32 @@ const { createCart } = require('./utils/createCart')
 const { updateCart } = require('./utils/updateCart')
 
 exports.handler = async (event) => {
-  const { cartId } = JSON.parse(event.body)
+  const { cartId, itemId, quantity } = JSON.parse(event.body)
 
   if (cartId) {
-    const updateCartResponse = await updateCart(cartId)
+    console.log('---------')
+    console.log('Updating existing cart')
+    console.log('---------')
+
+    const updateCartResponse = await updateCart({
+      cartId,
+      itemId,
+      quantity,
+    })
 
     return {
       statusCode: 200,
       body: JSON.stringify(updateCartResponse),
     }
   } else {
-    const createCartResponse = await createCart(cartId)
+    console.log('---------')
+    console.log('Creating new cart')
+    console.log('---------')
+
+    const createCartResponse = await createCart({
+      itemId,
+      quantity,
+    })
 
     return {
       statusCode: 200,

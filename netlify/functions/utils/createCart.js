@@ -23,10 +23,6 @@ exports.createCart = async ({ itemId, quantity }) => {
                   }
                 }
               }
-              attributes {
-                key
-                value
-              }
               estimatedCost {
                 totalAmount {
                   amount
@@ -54,13 +50,9 @@ exports.createCart = async ({ itemId, quantity }) => {
           lines: [
             {
               quantity,
-              merchandiseId: `${itemId}`,
+              merchandiseId: itemId,
             },
           ],
-          attributes: {
-            key: 'cart_attribute',
-            value: 'Some cart attribute',
-          },
         },
       },
     })
