@@ -5,6 +5,14 @@ const { updateCart } = require('./utils/updateCart')
  * Expects a POST method
  * with a body object that contains
  * the `cartId`
+ *
+ * Example:
+ * ```
+ * fetch('/.netlify/functions/add-to-cart', {
+ *   method: 'POST',
+ *   body: JSON.stringify({ cartId: 123 })
+ * })
+ * ```
  */
 exports.handler = async (event) => {
   const { cartId } = JSON.parse(event.body)
