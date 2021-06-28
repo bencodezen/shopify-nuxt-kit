@@ -31,9 +31,10 @@ export default {
 </script>
 
 <template>
-  <div>
+  <main>
+    <main-nav></main-nav>
     <HomeHero :cart="shoppingCart" />
-    <main>
+    <div>
       <ul class="products">
         <li
           v-for="product in productList"
@@ -43,8 +44,8 @@ export default {
           <ProductCard :product="product.node" />
         </li>
       </ul>
-    </main>
-  </div>
+    </div>
+  </main>
 </template>
 
 <style></style>

@@ -12,7 +12,8 @@ export default {
 </script>
 
 <template>
-  <div>
+  <main>
+    <main-nav></main-nav>
     <h1>Test Cart</h1>
     <p>ID: {{ cartId }}</p>
     <table>
@@ -30,7 +31,7 @@ export default {
       </tbody>
     </table>
     <ul></ul>
-  </div>
+  </main>
 </template>
 
 <style></style>

@@ -1,4 +1,6 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   async asyncData({ $http, route }) {
     const productData = await $http.$post('/api/get-product', {
@@ -13,6 +15,9 @@ export default {
     selectedProduct: '',
   }),
   computed: {
+    ...mapGetters({
+      cartId: 'cart/id',
+    }),
     featuredImage() {
       return this.product.images.edges[0].node
     },
@@ -23,6 +28,7 @@ export default {
   methods: {
     async addToCart() {
       const cartResponse = await this.$http.$post('/api/add-to-cart', {
+        cartId: this.cartId,
         itemId: this.selectedProduct,
         quantity: 1,
       })
@@ -44,6 +50,7 @@ export default {
 
 <template>
   <main>
+    <main-nav></main-nav>
     <HomeHero />
     <div class="product-page">
       <div class="product-img">
