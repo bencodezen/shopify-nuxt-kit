@@ -1,26 +1,43 @@
 <script>
 export default {
+  async asyncData({ $http, route }) {
+    const productData = await $http.$post('/api/get-product', {
+      itemHandle: route.params.slug,
+    })
+
+    return {
+      product: productData.productByHandle,
+    }
+  },
   data: () => ({
-    product: {},
+    selectedProduct: '',
   }),
   computed: {
     featuredImage() {
-      if (this.product.images && this.product.images.edges) {
-        return this.product.images.edges[0].node
-      } else {
-        return 'No image found'
-      }
+      return this.product.images.edges[0].node
+    },
+    productVariants() {
+      return this.product.variants.edges
     },
   },
-  async created() {
-    const productData = await fetch('/api/get-product', {
-      method: 'POST',
-      body: JSON.stringify({
-        itemHandle: this.$route.params.slug,
-      }),
-    }).then((res) => res.json())
+  methods: {
+    async addToCart() {
+      const cartResponse = await this.$http.$post('/api/add-to-cart', {
+        itemId: this.selectedProduct,
+        quantity: 1,
+      })
 
-    this.product = productData.productByHandle
+      console.log({ cartResponse })
+    },
+    currency(price) {
+      const amount = Number(price.amount).toFixed(2)
+
+      return '$' + amount + price.currencyCode
+    },
+  },
+  mounted() {
+    // Set default selected item
+    this.selectedProduct = this.productVariants[0].node.id
   },
 }
 </script>
@@ -37,10 +54,43 @@ export default {
         <p>
           {{ product.description }}
         </p>
-        <button>Add to Cart</button>
+        <form method="POST" @submit.prevent="addToCart">
+          <div v-if="productVariants.length > 1">
+            <div v-for="{ node: variant } in productVariants" :key="variant.id">
+              <input
+                type="radio"
+                :id="variant.id"
+                name="merchandiseId"
+                :value="variant.id"
+                v-model="selectedProduct"
+              />
+              <label :for="variant.id">
+                {{ variant.title }} - {{ currency(variant.priceV2) }}
+              </label>
+            </div>
+          </div>
+          <div v-else>
+            {{ product.variants.edges[0].node.priceV2.currencyCode }}
+            {{ product.variants.edges[0].node.priceV2.amount }}
+          </div>
+          <input type="number" name="quantity" value="1" />
+          <input type="hidden" name="cartId" value="" />
+          <input type="submit" value="Add to basket" />
+        </form>
       </div>
     </div>
   </main>
 </template>
 
-<style></style>
+<style>
+.product-variant-item {
+  border: 1px solid white;
+  padding: 10px;
+}
+
+.product-variant-list {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+</style>
