@@ -2,11 +2,13 @@
  * API Endpoint
  *
  * * Purpose: Get items from an existing cart
+ * @param {string} cartId
  *
  * Example:
  *```
  * fetch('/.netlify/functions/get-cart', {
- *   method: 'POST'
+ *   method: 'POST',
+ *   body: JSON.stringify({ cartId: '12345' })
  * })
  * ```
  *
