@@ -34,6 +34,10 @@ exports.handler = async (event) => {
                     ... on ProductVariant {
                       id
                       title
+                      product {
+                        title
+                        handle
+                      }
                     }
                   }
                 }

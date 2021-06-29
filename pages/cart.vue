@@ -41,7 +41,11 @@ export default {
       <tbody>
         <tr v-for="{ node: item } in cartItems" :key="item.id">
           <td>
-            {{ item.merchandise.title }}
+            <nuxt-link :to="`/products/${item.merchandise.product.handle}`">
+              {{ item.merchandise.product.title }} ({{
+                item.merchandise.title
+              }})
+            </nuxt-link>
           </td>
           <td>{{ item.quantity }}</td>
           <td>
