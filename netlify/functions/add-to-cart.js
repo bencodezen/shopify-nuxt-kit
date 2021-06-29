@@ -6,6 +6,9 @@
  * @param {string} itemId - Usually it's the product variant id
  * @param {number} quantity - Minimum 1
  *
+ * @returns {object} cart that contains lines of items inside
+ * See './utils/createCartWithItem' for the data structure
+ *
  * Examples:
  *
  * If a cart does not exist yet,
