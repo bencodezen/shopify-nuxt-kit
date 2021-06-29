@@ -2,7 +2,7 @@
  * Add to Cart API Endpoint
  *
  * * Purpose: Add a single item to the cart
- * @param {string} cardId (Optional)
+ * @param {string} cartId (Optional)
  * @param {string} itemId - Usually it's the product variant id
  * @param {number} quantity - Minimum 1
  *
