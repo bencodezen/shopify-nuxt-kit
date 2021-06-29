@@ -1,17 +1,14 @@
 const { postToShopify } = require('./postToShopify')
 
-// Takes a single item and creates a cart
-exports.createCart = async ({ itemId, quantity }) => {
+exports.addItemToCart = async ({ cartId, itemId, quantity }) => {
   try {
-    const response = await postToShopify({
+    const shopifyResponse = postToShopify({
       query: `
-        mutation createCart($cartInput: CartInput) {
-          cartCreate(input: $cartInput) {
+        mutation addItemToCart($cartId: ID!, $lines: [CartLineInput!]!) {
+          cartLinesAdd(cartId: $cartId, lines: $lines) {
             cart {
               id
-              createdAt
-              updatedAt
-              lines(first:10) {
+              lines(first: 10) {
                 edges {
                   node {
                     id
@@ -20,10 +17,6 @@ exports.createCart = async ({ itemId, quantity }) => {
                       ... on ProductVariant {
                         id
                         title
-                        product {
-                          id
-                          title
-                        }
                       }
                     }
                   }
@@ -52,18 +45,17 @@ exports.createCart = async ({ itemId, quantity }) => {
         }
       `,
       variables: {
-        cartInput: {
-          lines: [
-            {
-              quantity,
-              merchandiseId: itemId,
-            },
-          ],
-        },
+        cartId,
+        lines: [
+          {
+            merchandiseId: itemId,
+            quantity: quantity,
+          },
+        ],
       },
     })
 
-    return response
+    return shopifyResponse
   } catch (error) {
     console.log(error)
   }
