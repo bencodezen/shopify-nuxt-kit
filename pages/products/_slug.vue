@@ -38,7 +38,7 @@ export default {
     currency(price) {
       const amount = Number(price.amount).toFixed(2)
 
-      return '$' + amount + price.currencyCode
+      return '$' + amount + ` ${price.currencyCode}`
     },
   },
   mounted() {
@@ -77,8 +77,7 @@ export default {
             </div>
           </div>
           <div v-else>
-            {{ product.variants.edges[0].node.priceV2.currencyCode }}
-            {{ product.variants.edges[0].node.priceV2.amount }}
+            {{ currency(productVariants[0].node.priceV2) }}
           </div>
           <input type="number" name="quantity" value="1" />
           <input type="hidden" name="cartId" value="" />
