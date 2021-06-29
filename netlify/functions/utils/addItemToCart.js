@@ -49,7 +49,7 @@ exports.addItemToCart = async ({ cartId, itemId, quantity }) => {
         lines: [
           {
             merchandiseId: itemId,
-            quantity: quantity,
+            quantity,
           },
         ],
       },
