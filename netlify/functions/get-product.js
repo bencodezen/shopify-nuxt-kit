@@ -18,6 +18,9 @@ const { postToShopify } = require('./utils/postToShopify')
 exports.handler = async (event) => {
   const { itemHandle } = JSON.parse(event.body)
 
+  console.log('--------------------------------')
+  console.log('Retrieving product details...')
+  console.log('--------------------------------')
   const shopifyResponse = await postToShopify({
     query: `
       query getProduct($handle: String!) {

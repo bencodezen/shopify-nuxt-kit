@@ -23,6 +23,9 @@ exports.handler = async (event) => {
   const { cartId, lineId } = JSON.parse(event.body)
 
   try {
+    console.log('--------------------------------')
+    console.log('Removing item from cart...')
+    console.log('--------------------------------')
     const shopifyResponse = await removeItemFromCart({
       cartId,
       lineId,
@@ -33,9 +36,6 @@ exports.handler = async (event) => {
       body: JSON.stringify(shopifyResponse.cartLinesRemove.cart),
     }
   } catch (error) {
-    console.log('----------------')
-    console.log('remove-item-from-cart.js')
-    console.log('----------------')
     console.log(error)
   }
 }

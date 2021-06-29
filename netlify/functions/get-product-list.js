@@ -9,12 +9,19 @@
  *   method: 'POST'
  * })
  * ```
+ *
+ * ! POST method is intentional for future enhancement
+ *
+ * TODO: Add enhancement for pagination
  */
 
 const { postToShopify } = require('./utils/postToShopify')
 
 exports.handler = async () => {
   try {
+    console.log('--------------------------------')
+    console.log('Retrieving product list...')
+    console.log('--------------------------------')
     const shopifyResponse = await postToShopify({
       query: `
         query getProductList {
