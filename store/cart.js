@@ -12,7 +12,7 @@ export const getters = {
     return state.base.id
   },
   items: (state) => {
-    if (state.base.lines) {
+    if (state.base && state.base.lines) {
       return state.base.lines.edges
     } else {
       return []
