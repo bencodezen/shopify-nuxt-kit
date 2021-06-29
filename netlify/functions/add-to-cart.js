@@ -1,26 +1,32 @@
 /**
- * API endpoint to manage add items to the cart
+ * Add to Cart API Endpoint
  *
- * EXAMPLES:
+ * * Purpose: Add a single item to the cart
+ * @param {string} cardId (Optional)
+ * @param {string} itemId - Usually it's the product variant id
+ * @param {number} quantity - Minimum 1
  *
- * Add item to a new cart
+ * Examples:
+ *
+ * If a cart does not exist yet,
  * ```
  * fetch('/.netlify/functions/add-to-cart', {
  *   method: 'POST',
  *   body: JSON.stringify({
- *     itemId: 456,
+ *     cardId: '', // cardId can also be omitted if desired
+ *     itemId: 'Z2lkOi8vc2hvcGlmFyaWFudC8zOTc0NDEyMDEyNzY5NA==',
  *     quantity: 4
  *   })
  * })
  * ```
  *
- * Add item to existing cart
+ * Add item to an existing cart
  * ```
  * fetch('/.netlify/functions/add-to-cart', {
  *   method: 'POST',
  *   body: JSON.stringify({
- *     cartId: 123,
- *     itemId: 456,
+ *     cartId: 'S9Qcm9kdWN0VmFyaWFudC8zOTc0NDEyMDEyNzY5NA',
+ *     itemId: 'Z2lkOi8vc2hvcGlmFyaWFudC8zOTc0NDEyMDEyNzY5NA==',
  *     quantity: 4
  *   })
  * })

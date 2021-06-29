@@ -1,17 +1,18 @@
 /**
- * API endpoint to get items from an existing cart
+ * API Endpoint
  *
- * EXAMPLE:
+ * * Purpose: Get items from an existing cart
  *
- * Get existing cart
+ * Example:
  *```
- * fetch('/.netlify/functions/add-to-cart', {
- *   method: 'POST',
- *   body: JSON.stringify({
- *     cartId: 123
- *   })
+ * fetch('/.netlify/functions/get-cart', {
+ *   method: 'POST'
  * })
  * ```
+ *
+ * ! POST method is intentional for future enhancement
+ *
+ * TODO: Add enhancement for pagination
  */
 
 const { postToShopify } = require('./utils/postToShopify')

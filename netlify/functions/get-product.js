@@ -1,5 +1,16 @@
 /**
- * API endpoint for getting a specific product info
+ * Get Product API Endpoint
+ *
+ * * Purpose: Retrieve data on a specific product
+ * @param {string} itemHandle - kebab-cased-product-name
+ *
+ * Example:
+ * ```
+ * fetch('/.netlify/functions/get-product', {
+ *   method: 'POST',
+ *   body: JSON.stringify({ itemHandle: 'my-product' })
+ * })
+ * ```
  */
 
 const { postToShopify } = require('./utils/postToShopify')

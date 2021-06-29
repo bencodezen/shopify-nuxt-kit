@@ -1,3 +1,16 @@
+/**
+ * API Endpoint
+ *
+ * Purpose: Fetch first 100 products of the store
+ *
+ * Example:
+ * ```
+ * fetch('/.netlify/functions/get-product-list', {
+ *   method: 'POST'
+ * })
+ * ```
+ */
+
 const { postToShopify } = require('./utils/postToShopify')
 
 exports.handler = async () => {
