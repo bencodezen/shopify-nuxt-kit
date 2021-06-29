@@ -8,6 +8,13 @@ export default {
       cartItems: 'cart/items',
     }),
   },
+  async mounted() {
+    const shopifyResponse = await this.$http.$post('/api/get-cart', {
+      cartId: this.cartId,
+    })
+
+    this.$store.dispatch('cart/updateBase', shopifyResponse.cart)
+  },
   methods: {
     async removeItem(lineId) {
       const shopifyResponse = await this.$http.$post('/api/remove-from-cart', {
