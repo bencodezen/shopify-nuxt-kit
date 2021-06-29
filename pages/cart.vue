@@ -19,6 +19,11 @@ export default {
     this.$store.dispatch('cart/updateBase', shopifyResponse.cart)
   },
   methods: {
+    itemTotal(price, quantity) {
+      const totalPrice = Number(price) * Number(quantity)
+
+      return totalPrice.toFixed(2)
+    },
     async removeItem(lineId) {
       const shopifyResponse = await this.$http.$post('/api/remove-from-cart', {
         cartId: this.cartId,
@@ -39,7 +44,9 @@ export default {
       <table>
         <thead>
           <th>Item</th>
+          <th>Price</th>
           <th>Quantity</th>
+          <th>Total</th>
           <th>Actions</th>
         </thead>
         <tbody>
@@ -51,7 +58,11 @@ export default {
                 }})
               </nuxt-link>
             </td>
+            <td>{{ item.merchandise.priceV2.amount }}</td>
             <td>{{ item.quantity }}</td>
+            <td>
+              {{ itemTotal(item.merchandise.priceV2.amount, item.quantity) }}
+            </td>
             <td>
               <button @click="removeItem(item.id)">Remove Item</button>
             </td>
