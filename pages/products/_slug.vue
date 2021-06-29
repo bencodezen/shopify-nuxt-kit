@@ -75,12 +75,15 @@ export default {
                 name="merchandiseId"
                 :value="variant.id"
                 v-model="selectedProductId"
+                :disabled="variant.quantityAvailable === 0"
               />
               <label :for="variant.id">
-                {{ variant.title }} - {{ currency(variant.priceV2) }} x({{
-                  variant.quantityAvailable
-                }}
-                available)
+                {{ variant.title }} - {{ currency(variant.priceV2) }}
+                <span v-if="variant.quantityAvailable > 10">(10+ left)</span>
+                <span v-else-if="variant.quantityAvailable > 0">
+                  (Only {{ variant.quantityAvailable }} left)
+                </span>
+                <span v-else> (Bummer. It's sold out!) </span>
               </label>
             </div>
           </div>
