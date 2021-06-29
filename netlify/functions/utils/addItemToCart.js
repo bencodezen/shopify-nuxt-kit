@@ -17,6 +17,10 @@ exports.addItemToCart = async ({ cartId, itemId, quantity }) => {
                       ... on ProductVariant {
                         id
                         title
+                        priceV2 {
+                          amount
+                          currencyCode
+                        }
                         product {
                           title
                           handle
