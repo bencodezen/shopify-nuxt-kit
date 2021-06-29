@@ -24,9 +24,8 @@ export default {
 <template>
   <main>
     <main-nav></main-nav>
-    <h1>Test Cart</h1>
-    <p>ID: {{ cartId }}</p>
-    <table>
+    <h1>Your Cart</h1>
+    <table v-if="cartItems.length > 0">
       <thead>
         <th>Item</th>
         <th>Quantity</th>
@@ -44,7 +43,8 @@ export default {
         </tr>
       </tbody>
     </table>
-    <ul></ul>
+    <p v-else>Your cart is empty, fill it up!</p>
+    <nuxt-link to="/">Back Home</nuxt-link>
   </main>
 </template>
 
