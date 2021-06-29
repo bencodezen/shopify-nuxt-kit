@@ -12,7 +12,7 @@ export default {
     }
   },
   data: () => ({
-    selectedProduct: '',
+    selectedProductId: '',
   }),
   computed: {
     ...mapGetters({
@@ -24,12 +24,17 @@ export default {
     productVariants() {
       return this.product.variants.edges
     },
+    selectedProduct() {
+      return this.product.variants.edges.find((item) => {
+        return item.node.id === this.selectedProductId
+      })
+    },
   },
   methods: {
     async addToCart() {
       const cartResponse = await this.$http.$post('/api/add-to-cart', {
         cartId: this.cartId,
-        itemId: this.selectedProduct,
+        itemId: this.selectedProductId,
         quantity: 1,
       })
 
@@ -43,7 +48,7 @@ export default {
   },
   mounted() {
     // Set default selected item
-    this.selectedProduct = this.productVariants[0].node.id
+    this.selectedProductId = this.productVariants[0].node.id
   },
 }
 </script>
@@ -69,18 +74,25 @@ export default {
                 :id="variant.id"
                 name="merchandiseId"
                 :value="variant.id"
-                v-model="selectedProduct"
+                v-model="selectedProductId"
               />
               <label :for="variant.id">
-                {{ variant.title }} - {{ currency(variant.priceV2) }}
+                {{ variant.title }} - {{ currency(variant.priceV2) }} x({{
+                  variant.quantityAvailable
+                }}
+                available)
               </label>
             </div>
           </div>
           <div v-else>
             {{ currency(productVariants[0].node.priceV2) }}
           </div>
-          <input type="number" name="quantity" value="1" />
-          <input type="hidden" name="cartId" value="" />
+          <input
+            type="number"
+            name="quantity"
+            value="1"
+            :max="this.selectedProduct.node.quantityAvailable"
+          />
           <input type="submit" value="Add to basket" />
         </form>
       </div>
