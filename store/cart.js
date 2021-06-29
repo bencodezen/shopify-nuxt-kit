@@ -4,6 +4,10 @@ export const state = () => ({
     lines: {
       edges: [],
     },
+    estimatedCost: {
+      subtotalAmount: {},
+      totalAmount: {},
+    },
   },
 })
 
@@ -16,6 +20,25 @@ export const getters = {
       return state.base.lines.edges
     } else {
       return []
+    }
+  },
+  subtotal: (state) => {
+    if (state.base && state.base.estimatedCost) {
+      return state.base.estimatedCost.subtotalAmount
+    }
+  },
+  tax: (state) => {
+    if (state.base && state.base.estimatedCost) {
+      return state.base.estimatedCost.totalTaxAmount
+        ? state.base.estimatedCost.totalTaxAmount
+        : {
+            amount: 0,
+          }
+    }
+  },
+  total: (state) => {
+    if (state.base && state.base.estimatedCost) {
+      return state.base.estimatedCost.totalAmount
     }
   },
 }
