@@ -47,10 +47,16 @@ export const mutations = {
   setBase(state, response) {
     state.base = response
   },
+  setId(state, id) {
+    state.base.id = id
+  },
 }
 
 export const actions = {
   updateBase({ commit }, response) {
     commit('setBase', response)
+  },
+  updateId({ commit }, id) {
+    commit('setId', id)
   },
 }
