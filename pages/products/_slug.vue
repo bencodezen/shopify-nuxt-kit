@@ -21,6 +21,13 @@ export default {
     featuredImage() {
       return this.product.images.edges[0].node
     },
+    maxQuantity() {
+      if (this.selectedProduct) {
+        return this.selectedProduct.node.quantityAvailable
+      } else {
+        return 0
+      }
+    },
     productVariants() {
       return this.product.variants.edges
     },
@@ -90,12 +97,7 @@ export default {
           <div v-else>
             {{ currency(productVariants[0].node.priceV2) }}
           </div>
-          <input
-            type="number"
-            name="quantity"
-            value="1"
-            :max="this.selectedProduct.node.quantityAvailable"
-          />
+          <input type="number" name="quantity" value="1" :max="maxQuantity" />
           <input type="submit" value="Add to basket" />
         </form>
       </div>
