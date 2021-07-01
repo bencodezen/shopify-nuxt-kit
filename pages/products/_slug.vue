@@ -46,6 +46,7 @@ export default {
       })
 
       this.$store.dispatch('cart/updateBase', cartResponse)
+      window.localStorage.setItem('shopifyNuxtCartId', this.cartId)
     },
     currency(price) {
       const amount = Number(price.amount).toFixed(2)
@@ -56,6 +57,13 @@ export default {
   mounted() {
     // Set default selected item
     this.selectedProductId = this.productVariants[0].node.id
+
+    // Get local cart
+    const localCart = window.localStorage.getItem('shopifyNuxtCart')
+
+    if (localCart) {
+      this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
+    }
   },
 }
 </script>

@@ -54,9 +54,13 @@ export const mutations = {
 
 export const actions = {
   updateBase({ commit }, response) {
+    window.localStorage.removeItem('shopifyNuxtCart')
+    window.localStorage.setItem('shopifyNuxtCart', JSON.stringify(response))
     commit('setBase', response)
   },
   updateId({ commit }, id) {
+    window.localStorage.removeItem('shopifyNuxtCartId')
+    window.localStorage.setItem('shopifyNuxtCartId', id)
     commit('setId', id)
   },
 }

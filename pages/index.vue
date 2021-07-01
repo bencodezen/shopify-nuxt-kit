@@ -27,6 +27,14 @@ export default {
       this.$store.dispatch('cart/updateCartId', cartData.id)
     },
   },
+  mounted() {
+    // Get local cart
+    const localCart = window.localStorage.getItem('shopifyNuxtCart')
+
+    if (localCart) {
+      this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
+    }
+  },
 }
 </script>
 

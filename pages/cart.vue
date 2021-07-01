@@ -12,11 +12,20 @@ export default {
     }),
   },
   async mounted() {
-    const shopifyResponse = await this.$http.$post('/api/get-cart', {
-      cartId: this.cartId,
-    })
+    // Get local cart id
+    const localCart = window.localStorage.getItem('shopifyNuxtCart')
 
-    this.$store.dispatch('cart/updateBase', shopifyResponse.cart)
+    if (localCart) {
+      this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
+    } else {
+      const shopifyResponse = await this.$http.$post('/api/get-cart', {
+        cartId: this.cartId,
+      })
+
+      if (shopifyResponse) {
+        this.$store.dispatch('cart/updateBase', shopifyResponse.cart)
+      }
+    }
   },
   methods: {
     itemTotal(price, quantity) {
