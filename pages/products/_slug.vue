@@ -96,8 +96,21 @@ export default {
           </div>
           <div v-else>
             {{ currency(productVariants[0].node.priceV2) }}
+            <span v-if="productVariants[0].node.quantityAvailable > 10">
+              (10+ left)
+            </span>
+            <span v-else-if="productVariants[0].node.quantityAvailable > 0">
+              (Only {{ productVariants[0].node.quantityAvailable }} left)
+            </span>
+            <span v-else> (Bummer. It's sold out!) </span>
           </div>
-          <input type="number" name="quantity" value="1" :max="maxQuantity" />
+          <input
+            type="number"
+            name="quantity"
+            value="1"
+            min="0"
+            :max="maxQuantity"
+          />
           <input type="submit" value="Add to basket" />
         </form>
       </div>
