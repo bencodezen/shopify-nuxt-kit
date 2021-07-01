@@ -11,6 +11,14 @@ export default {
     shoppingCart: 0,
     cart: {},
   }),
+  mounted() {
+    // Get local cart
+    const localCart = window.localStorage.getItem('shopifyNuxtCart')
+
+    if (localCart) {
+      this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
+    }
+  },
   methods: {
     async addToCart() {
       const cartResponse = await fetch('/api/add-to-cart', {
@@ -27,14 +35,6 @@ export default {
       this.$store.dispatch('cart/updateCartId', cartData.id)
     },
   },
-  mounted() {
-    // Get local cart
-    const localCart = window.localStorage.getItem('shopifyNuxtCart')
-
-    if (localCart) {
-      this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
-    }
-  },
 }
 </script>
 
@@ -46,8 +46,8 @@ export default {
       <ul class="products">
         <li
           v-for="product in productList"
-          class="product"
           :key="product.node.id"
+          class="product"
         >
           <ProductCard :product="product.node" />
         </li>

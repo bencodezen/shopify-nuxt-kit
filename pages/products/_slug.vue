@@ -37,6 +37,17 @@ export default {
       })
     },
   },
+  mounted() {
+    // Set default selected item
+    this.selectedProductId = this.productVariants[0].node.id
+
+    // Get local cart
+    const localCart = window.localStorage.getItem('shopifyNuxtCart')
+
+    if (localCart) {
+      this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
+    }
+  },
   methods: {
     async addToCart() {
       const cartResponse = await this.$http.$post('/api/add-to-cart', {
@@ -53,17 +64,6 @@ export default {
 
       return '$' + amount + ` ${price.currencyCode}`
     },
-  },
-  mounted() {
-    // Set default selected item
-    this.selectedProductId = this.productVariants[0].node.id
-
-    // Get local cart
-    const localCart = window.localStorage.getItem('shopifyNuxtCart')
-
-    if (localCart) {
-      this.$store.dispatch('cart/updateBase', JSON.parse(localCart))
-    }
   },
 }
 </script>
@@ -85,11 +85,11 @@ export default {
           <div v-if="productVariants.length > 1">
             <div v-for="{ node: variant } in productVariants" :key="variant.id">
               <input
-                type="radio"
                 :id="variant.id"
+                v-model="selectedProductId"
+                type="radio"
                 name="merchandiseId"
                 :value="variant.id"
-                v-model="selectedProductId"
                 :disabled="variant.quantityAvailable === 0"
               />
               <label :for="variant.id">
