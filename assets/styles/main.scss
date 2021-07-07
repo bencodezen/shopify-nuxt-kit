@@ -1,0 +1,299 @@
+/**
+* Inspired by Sarah's E-Commerce Site
+* https://github.com/sdras/ecommerce-netlify/blob/main/assets/main.scss
+*/
+/*------------ Variables -----------*/
+
+$brandprimary: #d96528;
+$brandsecondary: #03c1c1;
+
+/*------------  Global   -----------*/
+
+body {
+  border: 10px solid #ccc;
+  min-height: 100vh;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  line-height: 1.4;
+  word-spacing: 1px;
+  -ms-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3 {
+  font-family: 'PT Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 40px;
+}
+
+p {
+  margin: 20px 0;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+a,
+a:active,
+a:visited {
+  color: $brandprimary;
+  text-decoration: none;
+  transition: 0.3s all ease;
+}
+
+button {
+  border: 1px solid #ccc;
+  background: white;
+  padding: 10px 14px;
+  cursor: pointer;
+  color: black;
+  font-weight: 700;
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  transition: 0.3s all ease;
+  &:hover {
+    background: black;
+    border: 1px solid black;
+    color: white;
+  }
+}
+
+button.purchase {
+  background: $brandprimary;
+  color: white;
+  font-size: 16px;
+  border: none;
+  &:hover {
+    background: #c14103;
+  }
+}
+
+button.pay-with-stripe {
+  background: black;
+  color: white;
+  font-size: 16px;
+  border: none;
+  &:hover {
+    background: #c14103;
+  }
+
+  &:disabled {
+    background: #999;
+  }
+}
+
+.price {
+  color: $brandprimary;
+  font-size: 20px;
+  margin: 5px 0;
+  font-weight: normal;
+  font-family: 'PT Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+}
+
+hr {
+  border-top: 1px solid #eee;
+  margin: 30px 0;
+}
+
+label {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  margin-top: 20px;
+  display: inline-block;
+}
+
+input {
+  font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+    Roboto, 'Helvetica Neue', Arial, sans-serif;
+  font-size: 16px;
+  padding: 5px 10px;
+}
+
+.center {
+  text-align: center;
+}
+
+/*------------  Store Grid   -----------*/
+
+/* no grid support */
+aside {
+  float: left;
+  width: 19.1489%;
+}
+
+.content {
+  /*no grid support*/
+  float: right;
+  width: 79.7872%;
+  /* grid */
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  padding: 0 !important;
+}
+
+@media (max-width: 600px) {
+  aside {
+    width: 100% !important;
+    margin-bottom: 10px !important;
+  }
+
+  .content {
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 900px) {
+  .content {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+@media screen and (max-width: 550px) {
+  .storegrid {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-template-rows: 1fr;
+    grid-column-gap: 10px;
+  }
+}
+
+/* --- items animation --- */
+
+.items-leave-active {
+  transition: opacity 0.2s ease-out, scale 0.2s ease-out;
+}
+
+.items-move {
+  transition: opacity 0.2s ease-out, scale 0.2s ease-out;
+}
+
+.items-enter-active {
+  transition: opacity 0.2s ease-out, scale 0.2s ease-out;
+}
+
+.items-enter,
+.items-leave-to {
+  opacity: 0;
+  transform: scale(0.9);
+  transform-origin: 50% 50%;
+}
+
+/* --- range --- */
+
+input[type='range'].slider {
+  -webkit-appearance: none;
+  width: 100%;
+  margin: 25px 0 5px;
+}
+
+input[type='range'].slider:focus {
+  outline: none;
+}
+
+input[type='range'].slider::-webkit-slider-runnable-track {
+  width: 100%;
+  height: 4.3px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  background: $brandprimary;
+  border-radius: 13.7px;
+  border: 0px solid rgba(1, 1, 1, 0);
+}
+
+input[type='range'].slider::-webkit-slider-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 62, 0), 0px 0px 0px rgba(0, 0, 88, 0);
+  border: 1.9px solid $brandprimary;
+  height: 17px;
+  width: 17px;
+  border-radius: 31px;
+  background: #ffffff;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -6.35px;
+}
+
+input[type='range'].slider:focus::-webkit-slider-runnable-track {
+  background: $brandprimary;
+}
+
+input[type='range'].slider::-moz-range-track {
+  width: 100%;
+  height: 4.3px;
+  cursor: pointer;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+  background: $brandprimary;
+  border-radius: 13.7px;
+  border: 0px solid rgba(1, 1, 1, 0);
+}
+
+input[type='range'].slider::-moz-range-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 62, 0), 0px 0px 0px rgba(0, 0, 88, 0);
+  border: 1.9px solid $brandprimary;
+  height: 17px;
+  width: 17px;
+  border-radius: 31px;
+  background: #ffffff;
+  cursor: pointer;
+}
+
+input[type='range'].slider::-ms-track {
+  width: 100%;
+  height: 4.3px;
+  cursor: pointer;
+  background: transparent;
+  border-color: transparent;
+  color: transparent;
+}
+
+input[type='range'].slider::-ms-fill-lower {
+  background: $brandprimary;
+  border: 0px solid rgba(1, 1, 1, 0);
+  border-radius: 27.4px;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+}
+
+input[type='range'].slider::-ms-fill-upper {
+  background: $brandprimary;
+  border: 0px solid rgba(1, 1, 1, 0);
+  border-radius: 27.4px;
+  box-shadow: 0px 0px 0px rgba(0, 0, 0, 0), 0px 0px 0px rgba(13, 13, 13, 0);
+}
+
+input[type='range'].slider::-ms-thumb {
+  box-shadow: 0px 0px 0px rgba(0, 0, 62, 0), 0px 0px 0px rgba(0, 0, 88, 0);
+  border: 1.9px solid $brandprimary;
+  height: 17px;
+  width: 17px;
+  border-radius: 31px;
+  background: #ffffff;
+  cursor: pointer;
+  height: 4.3px;
+}
+
+input[type='range'].slider:focus::-ms-fill-lower {
+  background: $brandprimary;
+}
+
+input[type='range'].slider:focus::-ms-fill-upper {
+  background: $brandprimary;
+}

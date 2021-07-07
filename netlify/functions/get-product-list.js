@@ -32,6 +32,7 @@ exports.handler = async () => {
                 handle
                 description
                 title
+                productType
                 totalInventory
                 variants(first: 5) {
                   edges {

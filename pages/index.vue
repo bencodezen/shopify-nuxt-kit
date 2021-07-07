@@ -20,20 +20,16 @@ export default {
 
 <template>
   <main>
-    <main-nav></main-nav>
-    <HomeHero />
-    <div>
-      <ul class="products">
-        <li
-          v-for="product in productList"
-          :key="product.node.id"
-          class="product"
-        >
-          <ProductCard :product="product.node" />
-        </li>
-      </ul>
+    <AppHeader />
+    <div class="home-content">
+      <StoreGrid :product-list="productList" />
     </div>
+    <AppFooter />
   </main>
 </template>
 
-<style></style>
+<style lang="scss">
+.home-content {
+  margin: 30px 0;
+}
+</style>
