@@ -134,8 +134,6 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-$brandprimary: #d96528;
-
 .add-quantity-line {
   display: flex;
 }
