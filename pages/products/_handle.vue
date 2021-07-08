@@ -73,7 +73,11 @@ export default {
     <article>
       <section class="product-page-content">
         <div>
-          <img :src="featuredImage.src" :alt="featuredImage.altText" />
+          <img
+            class="product-page-image"
+            :src="featuredImage.src"
+            :alt="featuredImage.altText"
+          />
         </div>
         <div>
           <h1>{{ product.title }}</h1>
@@ -106,7 +110,7 @@ export default {
                 </label>
               </div>
             </div>
-            <div v-else class="price is-solo">
+            <div v-else class="product-page-price is-solo">
               {{ currency(productVariants[0].node.priceV2) }}
               <span v-if="productVariants[0].node.quantityAvailable > 10">
                 (10+ left)
@@ -142,14 +146,26 @@ export default {
 
 .product-page-content {
   width: 80%;
-  margin-top: 30px;
-  margin-left: 8%;
-  display: grid;
-  justify-content: space-between;
-  justify-items: center;
-  align-items: center;
-  grid-template-columns: 1fr 2fr;
-  grid-column-gap: 30px;
+  margin: 30px auto 0;
+
+  @include breakpoint($deviceLg) {
+    display: grid;
+    justify-content: space-between;
+    justify-items: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+  }
+}
+
+.product-page-image {
+  width: 100%;
+  margin-bottom: 30px;
+
+  @include breakpoint($deviceLg) {
+    width: 100%;
+    margin-bottom: 0;
+  }
 }
 
 .product-page-price {
