@@ -28,8 +28,10 @@ export default {
         />
       </NuxtLink>
     </div>
-    <h3 class="product-title">{{ product.title }}</h3>
-    <p class="product-description">{{ shortDescription }}</p>
+    <div class="product-text">
+      <h3 class="product-title">{{ product.title }}</h3>
+      <p class="product-description">{{ shortDescription }}</p>
+    </div>
     <NuxtLink :to="`/products/${product.handle}`">
       <button class="multi-item">View Item ></button>
     </NuxtLink>
@@ -49,6 +51,11 @@ export default {
 .product-description {
   margin-top: 0;
   margin-bottom: 1rem;
+  overflow: hidden;
+  width: 100%;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
 }
 
 .product-frame {
@@ -68,8 +75,12 @@ export default {
   }
 }
 
+.product-text {
+  margin: 0.5rem 0;
+}
+
 .product-title {
-  margin-top: 0;
-  margin-bottom: 0.5rem;
+  margin: 0.5rem 0;
+  font-weight: 700;
 }
 </style>
