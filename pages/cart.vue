@@ -1,5 +1,6 @@
 <script>
 import { mapGetters } from 'vuex'
+import { formatCurrency } from '../utils/currency'
 
 export default {
   head: () => ({
@@ -31,18 +32,11 @@ export default {
     }
   },
   methods: {
-    currency(price) {
-      const amount = Number(price.amount).toFixed(2)
-
-      return '$' + amount + ` ${price.currencyCode}`
-    },
+    formatCurrency,
     itemTotal(price, quantity) {
       const totalPrice = Number(price.amount) * Number(quantity)
 
-      return this.currency({
-        amount: totalPrice,
-        currencyCode: price.currencyCode,
-      })
+      return this.formatCurrency(totalPrice, price.currencyCode)
     },
     async removeItem(lineId) {
       const shopifyResponse = await this.$http.$post('/api/remove-from-cart', {
@@ -61,55 +55,46 @@ export default {
     <article class="cart-content">
       <h1>Your Cart</h1>
       <div v-if="cartItems.length > 0">
-        <table>
+        <table class="cart-table">
           <thead>
-            <th>Item</th>
-            <th>Price</th>
-            <th>Quantity</th>
-            <th>Total</th>
-            <th>Actions</th>
+            <th class="cart-heading">Item</th>
+            <th class="cart-heading">Price</th>
+            <th class="cart-heading">Quantity</th>
+            <th class="cart-heading">Total</th>
+            <th class="cart-heading">Actions</th>
           </thead>
           <tbody>
-            <tr v-for="{ node: item } in cartItems" :key="item.id">
-              <td>
+            <tr
+              v-for="{ node: item } in cartItems"
+              :key="item.id"
+              class="cart-row"
+            >
+              <td class="cart-row-item">
                 <nuxt-link :to="`/products/${item.merchandise.product.handle}`">
                   {{ item.merchandise.product.title }} ({{
                     item.merchandise.title
                   }})
                 </nuxt-link>
               </td>
-              <td>{{ currency(item.merchandise.priceV2) }}</td>
-              <td>{{ item.quantity }}</td>
-              <td>
+              <td class="cart-row-item">
+                {{
+                  formatCurrency(
+                    item.merchandise.priceV2.amount,
+                    item.merchandise.priceV2.currencyCode
+                  )
+                }}
+              </td>
+              <td class="cart-row-item">{{ item.quantity }}</td>
+              <td class="cart-row-item">
                 {{ itemTotal(item.merchandise.priceV2, item.quantity) }}
               </td>
-              <td>
+              <td class="cart-row-item">
                 <button @click="removeItem(item.id)">Remove Item</button>
               </td>
             </tr>
           </tbody>
         </table>
-        <section class="payment">
-          <div></div>
-          <div class="total">
-            <div class="caption">
-              <p>
-                <strong>Subtotal:</strong>
-              </p>
-              <p>Shipping:</p>
-              <p>Tax:</p>
-              <p class="golden">Total:</p>
-            </div>
-            <div class="num">
-              <p>
-                <strong>{{ currency(subtotal) }}</strong>
-              </p>
-              <p>Free Shipping</p>
-              <p>{{ currency(tax) }}</p>
-              <p class="golden">{{ currency(total) }}</p>
-            </div>
-          </div>
-        </section>
+        <cart-total :subtotal="subtotal" :tax="tax" :total="total"></cart-total>
       </div>
       <section v-else>
         <p class="cart-empty-message">Your cart is empty, fill it up!</p>
@@ -141,43 +126,22 @@ export default {
   margin: 0 auto;
 }
 
-table {
+.cart-table {
   width: 100%;
   margin-top: 20px;
+  margin-bottom: 30px;
 }
 
-tr {
+.cart-item-row {
   text-align: center;
 }
 
-th {
+.cart-heading {
   padding: 10px 0;
 }
 
-td,
-th {
+.cart-row-item,
+.cart-heading {
   border-bottom: 1px solid #ccc;
-}
-
-.num p,
-.caption p {
-  padding-left: 10px;
-}
-
-.golden {
-  background: #f2eee2;
-  font-weight: bold;
-  padding: 10px;
-}
-
-.payment {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 100px;
-}
-
-.total {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
 }
 </style>

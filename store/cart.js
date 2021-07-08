@@ -1,3 +1,5 @@
+import { formatCurrency } from '../utils/currency'
+
 export const state = () => ({
   base: {
     id: '',
@@ -24,21 +26,28 @@ export const getters = {
   },
   subtotal: (state) => {
     if (state.base && state.base.estimatedCost) {
-      return state.base.estimatedCost.subtotalAmount
+      const subtotal = state.base.estimatedCost.subtotalAmount
+
+      return formatCurrency(subtotal.amount, subtotal.currencyCode)
     }
   },
   tax: (state) => {
     if (state.base && state.base.estimatedCost) {
-      return state.base.estimatedCost.totalTaxAmount
+      const tax = state.base.estimatedCost.totalTaxAmount
         ? state.base.estimatedCost.totalTaxAmount
         : {
             amount: 0,
+            currencyCode: 'USD',
           }
+
+      return formatCurrency(tax.amount, tax.currencyCode)
     }
   },
   total: (state) => {
     if (state.base && state.base.estimatedCost) {
-      return state.base.estimatedCost.totalAmount
+      const total = state.base.estimatedCost.totalAmount
+
+      return formatCurrency(total.amount, total.currencyCode)
     }
   },
 }
