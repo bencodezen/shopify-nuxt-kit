@@ -10,7 +10,7 @@ export default {
 </script>
 
 <template>
-  <div class="storegrid">
+  <div class="product-grid">
     <ProductCard
       v-for="product in productList"
       :key="product.node.id"
@@ -20,7 +20,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-.storegrid {
+.product-grid {
   max-width: 60vw;
   margin: 0 auto;
   display: grid;
@@ -40,10 +40,5 @@ export default {
   @include breakpoint($deviceXl) {
     grid-template-columns: repeat(4, 1fr);
   }
-}
-
-.content {
-  height: 100%;
-  width: 100%;
 }
 </style>

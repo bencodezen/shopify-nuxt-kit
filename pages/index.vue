@@ -34,7 +34,7 @@ export default {
 
 <template>
   <main class="home-wrapper">
-    <StoreGrid :product-list="filteredProductList" />
+    <product-grid :product-list="filteredProductList" />
   </main>
 </template>
 
