@@ -18,19 +18,19 @@ export default {
     <h1>Shoperoni</h1>
     <nav>
       <ul>
-        <li>
+        <li class="main-nav-item">
           <nuxt-link exact to="/">All</nuxt-link>
         </li>
-        <li>
+        <li class="main-nav-item">
           <nuxt-link to="/?type=cheese">Cheeses</nuxt-link>
         </li>
-        <li>
+        <li class="main-nav-item">
           <nuxt-link to="/?type=meat">Meats</nuxt-link>
         </li>
-        <li>
+        <li class="main-nav-item">
           <nuxt-link to="/?type=boards">Boards</nuxt-link>
         </li>
-        <li>
+        <li class="main-nav-item">
           <div class="carttotal" v-if="cartSize > 0">{{ cartSize }}</div>
           <nuxt-link to="/cart">Cart</nuxt-link>
         </li>
@@ -59,25 +59,36 @@ nav {
   padding: 8px 0;
   ul {
     padding-left: 0;
-    li {
-      display: inline;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      font-size: 13px;
-      padding: 0 20px;
-      border-left: 1px solid #ddd;
-      border-right: 1px solid #ddd;
-      position: relative;
-      a {
-        color: black;
-        &:hover {
-          color: #c14103;
-        }
-      }
-    }
   }
 }
 
+.main-nav-item {
+  position: relative;
+  display: inline;
+  padding: 0 3px;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+
+  @include breakpoint($deviceXs) {
+    padding: 0 8px;
+    border-left: 1px solid #ddd;
+    border-right: 1px solid #ddd;
+    font-size: 0.7rem;
+  }
+
+  @include breakpoint($deviceSm) {
+    padding: 0 10px;
+    font-size: 0.8rem;
+  }
+
+  a {
+    color: black;
+    &:hover {
+      color: $brandprimary;
+    }
+  }
+}
 .carttotal {
   position: absolute;
   border-radius: 1000px;
@@ -86,23 +97,16 @@ nav {
   font-size: 10px;
   padding: 3px;
   top: -18px;
-  right: -5px;
+  right: -20px;
   width: 25px;
   text-align: center;
   height: 25px;
   font-size: 10px;
   padding: 6px 10px;
   font-weight: bold;
-}
 
-@media screen and (max-width: 850px) {
-  h1 {
-    margin: 0;
-  }
-  nav ul li {
-    padding: 0 5px !important;
-    border-left: none !important;
-    border-right: none !important;
+  @include breakpoint($deviceMd) {
+    right: -18px;
   }
 }
 </style>
