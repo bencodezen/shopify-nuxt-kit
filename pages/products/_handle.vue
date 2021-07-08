@@ -77,7 +77,6 @@ export default {
         </section>
         <section class="product-info">
           <h1>{{ product.title }}</h1>
-          <h4 class="price">{{ product.price | dollar }}</h4>
           <p>{{ product.description }}</p>
           <form method="POST" @submit.prevent="addToCart">
             <div v-if="productVariants.length > 1" class="price-list">
