@@ -40,6 +40,6 @@ export default {
 
 <style lang="scss">
 .home-wrapper {
-  margin: 45px 0;
+  margin: 30px 0 45px;
 }
 </style>
