@@ -14,9 +14,9 @@ export default {
 </script>
 
 <template>
-  <header>
+  <header class="app-header">
     <h1>Shoperoni</h1>
-    <nav>
+    <nav class="main-nav">
       <ul>
         <li class="main-nav-item">
           <nuxt-link exact to="/">All</nuxt-link>
@@ -31,7 +31,7 @@ export default {
           <nuxt-link to="/?type=boards">Boards</nuxt-link>
         </li>
         <li class="main-nav-item">
-          <div class="carttotal" v-if="cartSize > 0">{{ cartSize }}</div>
+          <div class="cart-size" v-if="cartSize > 0">{{ cartSize }}</div>
           <nuxt-link to="/cart">Cart</nuxt-link>
         </li>
       </ul>
@@ -40,7 +40,7 @@ export default {
 </template>
 
 <style lang="scss" scoped>
-header {
+.app-header {
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -48,7 +48,7 @@ header {
   padding: 40px 40px 0;
 }
 
-nav {
+.main-nav {
   display: flex;
   width: 80vw;
   margin-top: 30px;
@@ -57,6 +57,7 @@ nav {
   border-top: 1px solid #ccc;
   border-bottom: 1px solid #ccc;
   padding: 8px 0;
+
   ul {
     padding-left: 0;
   }
@@ -89,20 +90,18 @@ nav {
     }
   }
 }
-.carttotal {
+.cart-size {
   position: absolute;
-  border-radius: 1000px;
-  background: black;
-  color: white;
-  font-size: 10px;
-  padding: 3px;
   top: -18px;
   right: -20px;
   width: 25px;
-  text-align: center;
   height: 25px;
-  font-size: 10px;
   padding: 6px 10px;
+  border-radius: 1000px;
+  background: black;
+  text-align: center;
+  color: white;
+  font-size: 10px;
   font-weight: bold;
 
   @include breakpoint($deviceMd) {
