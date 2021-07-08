@@ -103,7 +103,7 @@ export default {
                 </label>
               </div>
             </div>
-            <div class="price is-solo" v-else>
+            <div v-else class="price is-solo">
               {{ currency(productVariants[0].node.priceV2) }}
               <span v-if="productVariants[0].node.quantityAvailable > 10">
                 (10+ left)
