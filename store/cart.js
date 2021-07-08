@@ -24,6 +24,16 @@ export const getters = {
       return []
     }
   },
+  size: (_, getters) => {
+    if (getters.items.length > 0) {
+      return getters.items.reduce((acc, cv) => {
+        console.log({ cv })
+        return acc + cv.node.quantity
+      }, 0)
+    } else {
+      return 0
+    }
+  },
   subtotal: (state) => {
     if (state.base && state.base.estimatedCost) {
       const subtotal = state.base.estimatedCost.subtotalAmount

@@ -4,11 +4,8 @@ import { mapGetters } from 'vuex'
 export default {
   computed: {
     ...mapGetters({
-      items: 'cart/items',
+      cartSize: 'cart/size',
     }),
-    cartSize() {
-      return this.items.length
-    },
   },
 }
 </script>
