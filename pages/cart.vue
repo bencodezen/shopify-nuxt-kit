@@ -34,40 +34,42 @@ export default {
 </script>
 
 <template>
-  <main class="cart-wrapper">
-    <article class="cart-content">
+  <main class="cart-page">
+    <article class="cart-page-content">
       <h1>Your Cart</h1>
       <div v-if="cartItems.length > 0">
         <cart-table />
         <cart-total :subtotal="subtotal" :tax="tax" :total="total"></cart-total>
       </div>
       <section v-else>
-        <p class="cart-empty-message">Your cart is empty, fill it up!</p>
-        <nuxt-link to="/" class="button is-dark">Back to Products</nuxt-link>
+        <p class="cart-page-message">Your cart is empty, fill it up!</p>
+        <nuxt-link to="/" class="cart-page-button is-dark">
+          Back to Products
+        </nuxt-link>
       </section>
     </article>
   </main>
 </template>
 
 <style lang="scss">
-.button.is-dark {
+.cart-page {
+  width: 80vw;
+  margin: 0 auto;
+}
+
+.cart-page-button.is-dark {
   background: #222;
   color: #f8f8f8;
   padding: 10px 14px;
   display: inline-block;
 }
 
-.cart-content {
+.cart-page-content {
   margin: 2rem 0 3rem;
   text-align: center;
 }
 
-.cart-empty-message {
+.cart-page-message {
   margin-bottom: 1.5rem;
-}
-
-.cart-wrapper {
-  width: 80vw;
-  margin: 0 auto;
 }
 </style>
