@@ -14,8 +14,8 @@
       <li>LinkedIn</li>
     </ul>
     <ul>
-      <h4>Newsletter:</h4>
-      <input type="text" />
+      <h2 class="newsletter-title">Sign up for our newsletter:</h2>
+      <input type="email" placeholder="Enter your email" />
     </ul>
   </section>
 </template>
@@ -43,5 +43,9 @@ input {
   section {
     padding: 40px !important;
   }
+}
+
+.newsletter-title {
+  margin-bottom: 0.5rem;
 }
 </style>
