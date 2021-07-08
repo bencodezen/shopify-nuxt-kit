@@ -14,6 +14,9 @@ export default {
   data: () => ({
     selectedProductId: '',
   }),
+  head: () => ({
+    title: 'Shoperoni - Product',
+  }),
   computed: {
     ...mapGetters({
       cartId: 'cart/id',
