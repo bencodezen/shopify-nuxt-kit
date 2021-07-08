@@ -13,7 +13,7 @@ export const state = () => ({
 
 export const getters = {
   id: (state) => {
-    return state.base.id
+    return state.base?.id ? state.base.id : ''
   },
   items: (state) => {
     if (state.base && state.base.lines) {
