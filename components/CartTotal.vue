@@ -1,18 +1,13 @@
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
-  props: {
-    subtotal: {
-      type: String,
-      required: true,
-    },
-    tax: {
-      type: String,
-      required: true,
-    },
-    total: {
-      type: String,
-      required: true,
-    },
+  computed: {
+    ...mapGetters({
+      subtotal: 'cart/subtotal',
+      tax: 'cart/tax',
+      total: 'cart/total',
+    }),
   },
 }
 </script>

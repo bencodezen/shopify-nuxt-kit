@@ -9,9 +9,6 @@ export default {
     ...mapGetters({
       cartId: 'cart/id',
       cartItems: 'cart/items',
-      subtotal: 'cart/subtotal',
-      tax: 'cart/tax',
-      total: 'cart/total',
     }),
   },
   async mounted() {
@@ -39,7 +36,7 @@ export default {
       <h1>Your Cart</h1>
       <div v-if="cartItems.length > 0">
         <cart-table />
-        <cart-total :subtotal="subtotal" :tax="tax" :total="total"></cart-total>
+        <cart-total />
       </div>
       <section v-else>
         <p class="cart-page-message">Your cart is empty, fill it up!</p>
