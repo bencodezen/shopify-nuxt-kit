@@ -1,8 +1,25 @@
 /*------------ Variables -----------*/
 
+// Colors
 $brandprimary: #d96528;
 $brandsecondary: #03c1c1;
+
+// Typography
 $fontSerif: 'Domine', 'PT Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI',
   Roboto, 'Helvetica Neue', Arial, sans-serif;
 $fontSansSerif: 'Nanum Gothic', 'Montserrat', -apple-system, BlinkMacSystemFont,
-  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif; ;
+  'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+// Screen Widths
+$deviceSm: 640px;
+$deviceMd: 768px;
+$deviceLg: 1024px;
+$deviceXl: 1280px;
+
+/*------------ Mixins -----------*/
+
+@mixin breakpoint($size) {
+  @media screen and (min-width: $size) {
+    @content;
+  }
+}
