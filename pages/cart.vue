@@ -111,14 +111,29 @@ export default {
           </div>
         </section>
       </div>
-      <p v-else>Your cart is empty, fill it up!</p>
+      <section v-else>
+        <p class="cart-empty-message">Your cart is empty, fill it up!</p>
+        <nuxt-link to="/" class="button is-dark">Back to Products</nuxt-link>
+      </section>
     </article>
   </main>
 </template>
 
 <style lang="scss">
+.button.is-dark {
+  background: #222;
+  color: #f8f8f8;
+  padding: 10px 14px;
+  display: inline-block;
+}
+
 .cart-content {
-  margin-top: 2rem;
+  margin: 2rem 0 3rem;
+  text-align: center;
+}
+
+.cart-empty-message {
+  margin-bottom: 1.5rem;
 }
 
 .cart-wrapper {
