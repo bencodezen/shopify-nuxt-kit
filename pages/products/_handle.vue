@@ -80,10 +80,11 @@ export default {
           <h4 class="price">{{ product.price | dollar }}</h4>
           <p>{{ product.description }}</p>
           <form method="POST" @submit.prevent="addToCart">
-            <div v-if="productVariants.length > 1">
+            <div v-if="productVariants.length > 1" class="price-list">
               <div
                 v-for="{ node: variant } in productVariants"
                 :key="variant.id"
+                class="price"
               >
                 <input
                   :id="variant.id"
@@ -103,7 +104,7 @@ export default {
                 </label>
               </div>
             </div>
-            <div v-else>
+            <div class="price is-solo" v-else>
               {{ currency(productVariants[0].node.priceV2) }}
               <span v-if="productVariants[0].node.quantityAvailable > 10">
                 (10+ left)
@@ -113,18 +114,19 @@ export default {
               </span>
               <span v-else> (Bummer. It's sold out!) </span>
             </div>
-            <input
-              type="number"
-              name="quantity"
-              value="1"
-              min="0"
-              :max="maxQuantity"
-            />
+            <div class="add-quantity-line">
+              <input
+                class="quantity-input"
+                type="number"
+                name="quantity"
+                value="1"
+                min="0"
+                :max="maxQuantity"
+              />
 
-            <button type="submit" class="button purchase">Add to Cart</button>
+              <button type="submit" class="button purchase">Add to Cart</button>
+            </div>
           </form>
-
-          <p></p>
         </section>
       </section>
     </div>
@@ -132,6 +134,16 @@ export default {
 </template>
 
 <style lang="scss" scoped>
+$brandprimary: #d96528;
+
+.add-quantity-line {
+  display: flex;
+}
+
+.quantity-input {
+  width: 70px;
+}
+
 .product-wrapper {
   margin: 60px 0;
 }
@@ -158,16 +170,25 @@ export default {
   grid-column-gap: 30px;
 }
 
-.product-options {
-  display: flex;
+.price {
+  color: $brandprimary;
+  font-size: 20px;
+  margin: 5px 0;
+  font-weight: normal;
+  font-family: 'PT Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+
+  &.is-solo {
+    margin-bottom: 30px;
+  }
 }
 
-input,
-select {
-  width: 60px;
-  font-size: 25px;
-  margin: 0 5px;
-  padding: 5px 10px;
+.price- .price-list {
+  margin-bottom: 15px;
+}
+
+.product-options {
+  display: flex;
 }
 
 .update-num {
