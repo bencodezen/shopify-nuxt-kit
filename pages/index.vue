@@ -33,13 +33,13 @@ export default {
 </script>
 
 <template>
-  <main class="home-wrapper">
+  <main class="home-page">
     <product-grid :product-list="filteredProductList" />
   </main>
 </template>
 
-<style lang="scss">
-.home-wrapper {
+<style lang="scss" scoped>
+.home-page {
   margin: 30px 0 45px;
 }
 </style>

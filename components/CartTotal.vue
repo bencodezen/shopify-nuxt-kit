@@ -35,7 +35,7 @@ export default {
   </section>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .cart-total {
   display: grid;
   grid-template-columns: repeat(5, 1fr);

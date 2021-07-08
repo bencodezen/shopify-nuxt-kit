@@ -67,7 +67,7 @@ export default {
   </table>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .cart-table {
   width: 100%;
   margin-top: 20px;
