@@ -5,6 +5,7 @@ import { formatCurrency } from '../utils/currency'
 export default {
   computed: {
     ...mapGetters({
+      cartId: 'cart/id',
       cartItems: 'cart/items',
     }),
   },
