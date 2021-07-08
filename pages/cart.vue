@@ -58,7 +58,6 @@ export default {
 
 <template>
   <main class="cart-wrapper">
-    <AppHeader />
     <article class="cart-content">
       <h1>Your Cart</h1>
       <div v-if="cartItems.length > 0">
