@@ -4,7 +4,7 @@ import { mapGetters } from 'vuex'
 export default {
   async asyncData({ $http, route }) {
     const productData = await $http.$post('/api/get-product', {
-      itemHandle: route.params.slug,
+      itemHandle: route.params.handle,
     })
 
     return {
