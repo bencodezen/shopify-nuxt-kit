@@ -40,12 +40,10 @@ export default {
 
 <style lang="scss" scoped>
 .product-card {
-  max-height: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin: 20px 0;
 }
 
 .product-card-description {
@@ -60,7 +58,6 @@ export default {
 
 .product-card-frame {
   height: 120px;
-  margin-bottom: 0.5rem;
   display: flex;
   align-content: center;
   align-items: center;
@@ -81,6 +78,7 @@ export default {
 
 .product-card-title {
   margin: 0.5rem 0;
+  text-align: center;
   font-weight: 700;
 }
 </style>

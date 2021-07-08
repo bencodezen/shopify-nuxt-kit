@@ -26,8 +26,8 @@ export default {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  grid-column-gap: 40px;
-  grid-row-gap: 0px;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 
   @include breakpoint($deviceSm) {
     grid-template-columns: repeat(2, 1fr);

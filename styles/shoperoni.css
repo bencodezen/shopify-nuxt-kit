@@ -313,8 +313,8 @@ input {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
-  grid-column-gap: 40px;
-  grid-row-gap: 0;
+  grid-column-gap: 30px;
+  grid-row-gap: 30px;
 }
 @media screen and (min-width: 640px) {
   .product-grid {
@@ -332,12 +332,10 @@ input {
   }
 }
 .product-card {
-  max-height: 500px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  margin: 20px 0;
 }
 .product-card-description {
   margin-top: 0;
@@ -369,5 +367,6 @@ input {
 }
 .product-card-title {
   margin: 0.5rem 0;
+  text-align: center;
   font-weight: 700;
 }
