@@ -31,7 +31,7 @@ export default {
           <nuxt-link to="/?type=boards">Boards</nuxt-link>
         </li>
         <li class="main-nav-item">
-          <div class="cart-size" v-if="cartSize > 0">{{ cartSize }}</div>
+          <div v-if="cartSize > 0" class="cart-size">{{ cartSize }}</div>
           <nuxt-link to="/cart">Cart</nuxt-link>
         </li>
       </ul>
