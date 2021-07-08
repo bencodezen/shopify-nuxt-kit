@@ -33,17 +33,13 @@ export default {
 </script>
 
 <template>
-  <main>
-    <AppHeader />
-    <div class="home-content">
-      <StoreGrid :product-list="filteredProductList" />
-    </div>
-    <AppFooter />
+  <main class="home-wrapper">
+    <StoreGrid :product-list="filteredProductList" />
   </main>
 </template>
 
 <style lang="scss">
-.home-content {
-  margin: 30px 0;
+.home-wrapper {
+  margin: 45px 0;
 }
 </style>
