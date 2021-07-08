@@ -69,21 +69,24 @@ export default {
 </script>
 
 <template>
-  <main class="product-wrapper">
-    <div>
-      <section class="item-contain">
-        <section class="img">
+  <main class="product-page">
+    <article>
+      <section class="product-page-content">
+        <div>
           <img :src="featuredImage.src" :alt="featuredImage.altText" />
-        </section>
-        <section class="product-info">
+        </div>
+        <div>
           <h1>{{ product.title }}</h1>
           <p>{{ product.description }}</p>
           <form method="POST" @submit.prevent="addToCart">
-            <div v-if="productVariants.length > 1" class="price-list">
+            <div
+              v-if="productVariants.length > 1"
+              class="product-page-price-list"
+            >
               <div
                 v-for="{ node: variant } in productVariants"
                 :key="variant.id"
-                class="price"
+                class="product-page-price"
               >
                 <input
                   :id="variant.id"
@@ -113,9 +116,9 @@ export default {
               </span>
               <span v-else> (Bummer. It's sold out!) </span>
             </div>
-            <div class="add-quantity-line">
+            <div class="product-page-quantity-row">
               <input
-                class="quantity-input"
+                class="product-page-quantity-input"
                 type="number"
                 name="quantity"
                 value="1"
@@ -126,39 +129,21 @@ export default {
               <button type="submit" class="button purchase">Add to Cart</button>
             </div>
           </form>
-        </section>
+        </div>
       </section>
-    </div>
+    </article>
   </main>
 </template>
 
-<style lang="scss" scoped>
-.add-quantity-line {
-  display: flex;
-}
-
-.quantity-input {
-  width: 70px;
-}
-
-.product-wrapper {
+<style lang="scss">
+.product-page {
   margin: 60px 0;
 }
-.product-variant-item {
-  border: 1px solid white;
-  padding: 10px;
-}
 
-.product-variant-list {
-  display: flex;
-  list-style-type: none;
-  padding: 0;
-}
-
-.item-contain {
+.product-page-content {
+  width: 80%;
   margin-top: 30px;
   margin-left: 8%;
-  width: 80%;
   display: grid;
   justify-content: space-between;
   justify-items: center;
@@ -167,7 +152,7 @@ export default {
   grid-column-gap: 30px;
 }
 
-.price {
+.product-page-price {
   color: $brandprimary;
   font-size: 1.2rem;
   margin: 5px 0;
@@ -179,57 +164,15 @@ export default {
   }
 }
 
-.price-list {
+.product-page-price-list {
   margin-bottom: 30px;
 }
 
-.product-options {
+.product-page-quantity-input {
+  width: 70px;
+}
+
+.product-page-quantity-row {
   display: flex;
-}
-
-.update-num {
-  background: black;
-  border-color: black;
-  color: white;
-  font-size: 20px;
-  width: 45px;
-}
-
-.size {
-  margin-left: 10px;
-}
-
-.size-picker {
-  width: 130px;
-  font-size: 20px;
-  height: 100%;
-  border: 0;
-  background-color: white;
-  outline: 1px solid #ccc;
-  outline-offset: -1px;
-}
-
-.quantity {
-  display: flex;
-}
-
-.size-required-message {
-  color: red;
-}
-
-@media screen and (max-width: 650px) {
-  .img img {
-    width: 100%;
-  }
-
-  .item-contain {
-    margin-left: 0 !important;
-    width: 95% !important;
-  }
-
-  .review {
-    width: 90%;
-    margin-left: 4%;
-  }
 }
 </style>
