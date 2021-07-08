@@ -18,8 +18,8 @@ export default {
 </script>
 
 <template>
-  <div class="product">
-    <div class="product-frame">
+  <div class="product-card">
+    <div class="product-card-frame">
       <NuxtLink :to="`/products/${product.handle}`">
         <img
           class="prodimg"
@@ -28,18 +28,18 @@ export default {
         />
       </NuxtLink>
     </div>
-    <div class="product-text">
-      <h3 class="product-title">{{ product.title }}</h3>
-      <p class="product-description">{{ shortDescription }}</p>
+    <div class="product-card-text">
+      <h3 class="product-card-title">{{ product.title }}</h3>
+      <p class="product-card-description">{{ shortDescription }}</p>
     </div>
     <NuxtLink :to="`/products/${product.handle}`">
-      <button class="multi-item">View Item ></button>
+      <button>View Item ></button>
     </NuxtLink>
   </div>
 </template>
 
-<style lang="scss" scoped>
-.product {
+<style lang="scss">
+.product-card {
   max-height: 500px;
   display: flex;
   justify-content: space-between;
@@ -48,7 +48,7 @@ export default {
   margin: 20px 0;
 }
 
-.product-description {
+.product-card-description {
   margin-top: 0;
   margin-bottom: 1rem;
   overflow: hidden;
@@ -58,7 +58,7 @@ export default {
   -webkit-line-clamp: 2;
 }
 
-.product-frame {
+.product-card-frame {
   height: 120px;
   margin-bottom: 0.5rem;
   display: flex;
@@ -75,11 +75,11 @@ export default {
   }
 }
 
-.product-text {
+.product-card-text {
   margin: 0.5rem 0;
 }
 
-.product-title {
+.product-card-title {
   margin: 0.5rem 0;
   font-weight: 700;
 }
