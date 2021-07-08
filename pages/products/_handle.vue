@@ -139,7 +139,7 @@ export default {
   </main>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product-page {
   margin: 60px 0;
 }

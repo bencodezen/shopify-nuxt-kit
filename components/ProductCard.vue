@@ -38,7 +38,7 @@ export default {
   </div>
 </template>
 
-<style lang="scss">
+<style lang="scss" scoped>
 .product-card {
   max-height: 500px;
   display: flex;
