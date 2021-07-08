@@ -181,8 +181,8 @@ export default {
   }
 }
 
-.price- .price-list {
-  margin-bottom: 15px;
+.price-list {
+  margin-bottom: 30px;
 }
 
 .product-options {
