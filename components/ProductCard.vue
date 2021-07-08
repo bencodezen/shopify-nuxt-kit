@@ -40,7 +40,7 @@ export default {
 .product {
   max-height: 500px;
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   flex-direction: column;
   margin: 20px 0;
@@ -52,7 +52,6 @@ export default {
 }
 
 .product-frame {
-  width: 240px;
   height: 120px;
   margin-bottom: 0.5rem;
   display: flex;

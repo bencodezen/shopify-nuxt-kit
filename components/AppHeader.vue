@@ -22,13 +22,13 @@ export default {
           <nuxt-link exact to="/">All</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/">Cheeses</nuxt-link>
+          <nuxt-link to="/?type=cheese">Cheeses</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/">Meats</nuxt-link>
+          <nuxt-link to="/?type=meat">Meats</nuxt-link>
         </li>
         <li>
-          <nuxt-link to="/">Boards</nuxt-link>
+          <nuxt-link to="/?type=boards">Boards</nuxt-link>
         </li>
         <li>
           <div class="carttotal" v-if="cartSize > 0">{{ cartSize }}</div>

@@ -47,6 +47,14 @@ exports.handler = async (event) => {
                       product {
                         title
                         handle
+                        images(first: 1) {
+                          edges {
+                            node {
+                              src
+                              altText
+                            }
+                          }
+                        }
                       }
                     }
                   }

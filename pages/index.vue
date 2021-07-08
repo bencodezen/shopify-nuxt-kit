@@ -1,11 +1,25 @@
 <script>
 export default {
-  async asyncData({ $http }) {
+  async asyncData({ $http, $route }) {
     const productListResponse = await $http.$post('/api/get-product-list')
 
     return {
       productList: productListResponse.products.edges,
     }
+  },
+  head: () => ({
+    title: 'Shoperoni',
+  }),
+  computed: {
+    filteredProductList() {
+      if (this.$route.query.type) {
+        return this.productList.filter(
+          (product) => product.node.productType === this.$route.query.type
+        )
+      } else {
+        return this.productList
+      }
+    },
   },
   mounted() {
     // Get local cart
@@ -22,7 +36,7 @@ export default {
   <main>
     <AppHeader />
     <div class="home-content">
-      <StoreGrid :product-list="productList" />
+      <StoreGrid :product-list="filteredProductList" />
     </div>
     <AppFooter />
   </main>
