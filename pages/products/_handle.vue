@@ -170,11 +170,10 @@ export default {
 
 .price {
   color: $brandprimary;
-  font-size: 20px;
+  font-size: 1.2rem;
   margin: 5px 0;
   font-weight: normal;
-  font-family: 'PT Serif', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-    'Helvetica Neue', Arial, sans-serif;
+  font-family: $fontSerif;
 
   &.is-solo {
     margin-bottom: 30px;
