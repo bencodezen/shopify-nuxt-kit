@@ -11,7 +11,7 @@ export default {
 
 <template>
   <div class="product-grid">
-    <ProductCard
+    <product-card
       v-for="product in productList"
       :key="product.node.id"
       :product="product.node"
