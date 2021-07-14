@@ -27,7 +27,6 @@ export const getters = {
   size: (_, getters) => {
     if (getters.items.length > 0) {
       return getters.items.reduce((acc, cv) => {
-        console.log({ cv })
         return acc + cv.node.quantity
       }, 0)
     } else {
