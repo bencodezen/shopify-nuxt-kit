@@ -13,6 +13,7 @@ export default {
   },
   data: () => ({
     selectedProductId: '',
+    selectedProductQty: 1,
   }),
   head: () => ({
     title: 'Shoperoni - Product',
@@ -56,7 +57,7 @@ export default {
       const cartResponse = await this.$http.$post('/api/add-to-cart', {
         cartId: this.cartId,
         itemId: this.selectedProductId,
-        quantity: 1,
+        quantity: this.selectedProductQty,
       })
 
       this.$store.dispatch('cart/updateBase', cartResponse)
@@ -125,10 +126,10 @@ export default {
             </div>
             <div class="product-page-quantity-row">
               <input
+                v-model.number="selectedProductQty"
                 class="product-page-quantity-input"
                 type="number"
                 name="quantity"
-                value="1"
                 min="0"
                 :max="maxQuantity"
               />
