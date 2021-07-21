@@ -56,6 +56,6 @@ export default {
     baseUrl:
       process.env.NODE_ENV !== 'production'
         ? 'http://localhost:8888'
-        : 'https://shopify-nuxt-demo.netlify.app',
+        : 'https://shopify-nuxt-kit.netlify.app',
   },
 }
