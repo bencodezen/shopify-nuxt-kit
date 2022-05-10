@@ -4,19 +4,21 @@ A starter template kit for those looking to use Shopify's new Cart API with Nuxt
 
 ## Build Setup
 
+_**Prerequisite**: [Netlify CLI](https://docs.netlify.com/cli/get-started/) and [Node 16](https://nodejs.org/en/)_
+
 ```bash
 # install dependencies
-$ yarn install
+$ npm install
 
-# serve with hot reload at localhost:3000
-$ yarn dev
+# serve with hot reload at localhost:8888
+$ ntl dev
 
 # build for production and launch server
-$ yarn build
-$ yarn start
+$ npm run build
+$ npm run start
 
 # generate static project
-$ yarn generate
+$ npm run generate
 ```
 
 For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
