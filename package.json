@@ -14,7 +14,7 @@
     "@nuxt/http": "^0.6.4",
     "core-js": "^3.9.1",
     "node-fetch": "^2.6.1",
-    "nuxt": "^2.15.3"
+    "nuxt": "^2.15.8"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^6.0.0",
@@ -26,7 +26,6 @@
     "eslint-plugin-nuxt": "^2.0.0",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.7.0",
-    "fibers": "^5.0.0",
     "prettier": "^2.2.1",
     "sass": "^1.35.1",
     "sass-loader": "10"
