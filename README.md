@@ -2,6 +2,13 @@
 
 A starter template kit for those looking to use Shopify's new Cart API with Nuxt.js.
 
+## Configuration
+
+You need to set the following environment variables in your Netlify dashboard:
+
+- `SHOPIFY_API_ENDPOINT`: Example `https://example.myshopify.com/api/unstable/graphql.json`
+- `SHOPIFY_STOREFRONT_API_TOKEN`: Example `asdfj8fjhd83js83dhdhs8s`
+
 ## Build Setup
 
 _**Prerequisite**: [Netlify CLI](https://docs.netlify.com/cli/get-started/) and [Node 16](https://nodejs.org/en/)_
