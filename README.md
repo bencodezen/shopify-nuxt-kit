@@ -1,6 +1,8 @@
-# Shopify Nuxt
+# Shopify Nuxt Kit
 
-A starter template kit for those looking to use Shopify's new Cart API with Nuxt.js.
+A starter template kit for those looking to use [Shopify](https://www.shopify.com)'s new Cart API with Nuxt.js on [Netlify](https://www.netlify.com).
+
+[![Deploy to Netlify](https://www.netlify.com/img/deploy/button.svg)](https://app.netlify.com/start/deploy?repository=https://github.com/bencodezen/shopify-nuxt-kit)
 
 ## Configuration
 
