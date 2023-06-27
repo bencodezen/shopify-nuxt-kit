@@ -14,7 +14,7 @@
         <a href="https://github.com/bencodezen/shopify-nuxt">
           open source on GitHub </a
         >, hosted with <a href="https://bit.ly/2G29YwK">Netlify</a>, built with
-        <a href="https://nuxtjs.org/">Nuxt</a> and made with 💚 by Ben Hong (<a
+        <a href="https://nuxtjs.org/">Nuxt 2</a> and made with 💚 by Ben Hong (<a
           href="https://twitter.com/bencodezen"
           >@bencodezen</a
         >)
